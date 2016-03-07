@@ -1,14 +1,41 @@
 <head>
-  <title>project-tracker</title>
+  <title>Project Tracker</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div class="container">
+    <header>
 
-  {{> hello}}
+    <h1>Project Tracker</h1>
+
+  </header>
+  <div class="task-form">
+    <form class="new-task" id="new-task-form">
+      <input type="text" name="task" placeholder="New task"><br>
+      <textarea form="new-task-form" name="notes" rows="8" cols="40" placeholder="Notes"></textarea><br>
+      <input type="submit" name="submit" value="Add Task">
+    </form>
+  </div>
+  <ul>
+
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
+  </div>
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="task">
+    {{#if editing}}
+    <li>{{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable"></li>
+    {{else}}
+    <li>{{formatDate createdAt}}: <span class="editable">{{task}}</span></li>
+    {{/if}}
+
+    {{#if editing2}}
+      <textarea name="notes" class="savable2">{{notes}}</textarea>
+     {{else}}
+     <p class="editable2">{{notes}}</p>
+     {{/if}}
 </template>
