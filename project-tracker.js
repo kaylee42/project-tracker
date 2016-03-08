@@ -2,6 +2,7 @@ Projects = new Mongo.Collection("projects");
 Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient){
+
    Template.body.helpers({
      projects: function(){
        return Projects.find({}, {sort: {createdAt: -1}});
@@ -10,7 +11,11 @@ if (Meteor.isClient){
        return Tasks.find({project: Session.get("currentProject")}, {sort: {createdAt: -1}});
      },
      currentProject: function(){
-       return Projects.find(Session.get("currentProject"));
+       if(Session.get("currentProject")){
+         return Projects.find(Session.get("currentProject"));
+       }else{
+         return false;
+       }
      }
    });
 
@@ -38,6 +43,7 @@ if (Meteor.isClient){
          createdAt: new Date()
        });
        document.getElementById("new-project").reset();
+       $(".current-projects").val(projectId);
        return Session.set("currentProject", projectId);
      },
      "change .current-projects": function(){
@@ -107,6 +113,12 @@ if (Meteor.isClient){
     }
   });
 }
+
+if (Meteor.isServer) {
+
+}
+
+
 // if (Meteor.isClient) {
 //   // counter starts at 0
 //   Session.setDefault('counter', 0);
@@ -125,8 +137,3 @@ if (Meteor.isClient){
 //   });
 // }
 //
-// if (Meteor.isServer) {
-//   Meteor.startup(function () {
-//     // code to run on server at startup
-//   });
-// }

@@ -11,6 +11,7 @@
     <div class="projects">
       Select Project:
       <select class="current-projects" name="">
+        <option></option>
         {{#each projects}}
           {{> projectdropdown}}
         {{/each}}
@@ -25,6 +26,7 @@
   {{#each currentProject}}
     {{>current}}
   {{/each}}
+  {{#if currentProject}}
   <div class="task-form">
     <form class="new-task" id="new-task-form">
       <input type="text" name="task" placeholder="New task"><br>
@@ -32,6 +34,7 @@
       <input type="submit" name="submit-task" value="Add Task">
     </form>
   </div>
+  {{/if}}
   <ul>
 
     {{#each tasks}}
