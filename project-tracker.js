@@ -81,7 +81,7 @@ if (Meteor.isClient){
 
    Template.task.helpers({
      formatDate: function(date){
-       return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+       return `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
      },
      editing: function(){
        return Session.get("target" + this._id);
