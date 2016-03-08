@@ -3,26 +3,47 @@
 </head>
 
 <body>
-  <div class="container">
-    <header>
 
-    <h1>Project Tracker</h1>
-
-    <div class="projects">
-      Select Project:
-      <select class="current-projects" name="">
-        <option></option>
-        {{#each projects}}
-          {{> projectdropdown}}
-        {{/each}}
-      </select>
-      <form id="new-project">
-        <input type="text" name="project" placeholder="New project">
-        <input type="submit" name="submit-project" value="Add Project">
-      </form>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project Tracker</a>
     </div>
 
-  </header>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown"><a>Select Project: <select class="current-projects" name="">
+          <option></option>
+          {{#each projects}}
+            {{> projectdropdown}}
+          {{/each}}
+        </select></a></li>
+
+      </ul>
+      <form class="navbar-form navbar-left" role="search" id="new-project">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="New project" name="project">
+        </div>
+        <input type="submit" class="btn btn-default" name="submit-project" value="Add Project">
+      </form>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container">
+  <div class="col-md-4">
+
+
   {{#each currentProject}}
     {{>current}}
   {{/each}}
@@ -34,22 +55,39 @@
       <input type="submit" name="submit-task" value="Add Task">
     </form>
   </div>
+  {{else}}
+  <div class="task col-md-12 intro">
+    <strong>Welcome to Project Tracker!</strong><br>
+    <p>
+      This small app is my first foray into building with Meteor.
+      To get started, either select a project or create a new one.
+      You can create new task cards from the project page.
+      Task content and project titles can be edited by double-clicking the content.<br><br>
+
+      You can find me on GitHub <a href="https://github.com/kaylee42">@kaylee42</a>.
+    </p>
+  </div>
   {{/if}}
-  <ul>
+  </div>
+
 
     {{#each tasks}}
       {{> task}}
     {{/each}}
-  </ul>
+
   </div>
+
+
 
 </body>
 
 <template name="task">
+  <div class="task col-md-2">
+
     {{#if editing}}
-      <li>{{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable"></li>
+      {{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable">
     {{else}}
-      <li>{{formatDate createdAt}}: <span class="editable">{{task}}</span></li>
+      {{formatDate createdAt}}: <span class="editable">{{task}}</span>
     {{/if}}
 
     {{#if editing2}}
@@ -57,10 +95,11 @@
      {{else}}
      <p class="editable2">{{notes}}</p>
      {{/if}}
+   </div>
 </template>
 
 <template name="projectdropdown">
-   <option value="{{_id}}">{{name}}</option>
+   <option class="dropdown" value="{{_id}}">{{name}}</option>
 </template>
 
 <template name="current">
