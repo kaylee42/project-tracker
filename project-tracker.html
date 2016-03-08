@@ -87,7 +87,7 @@
     {{#if editing}}
       {{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable">
     {{else}}
-      {{formatDate createdAt}}: <span class="editable">{{task}}</span>
+      {{formatDate createdAt}}: <span class="editable"><strong>{{task}}</strong></span>
     {{/if}}
 
     {{#if editing2}}
