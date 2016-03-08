@@ -19,8 +19,8 @@ body {
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
+  /*max-width: 800px;*/
+  /*margin: 0 auto;*/
   min-height: 100%;
   background: #16031B;
 }
@@ -28,6 +28,6 @@ body {
 header {
   background: #273443;
   /*background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);*/
-  padding: 20px 15px 15px 15px;
+  /*padding: 20px 15px 15px 15px;*/
   position: relative;
 }
