@@ -80,32 +80,3 @@
 
 
 </body>
-
-<template name="task">
-  <div class="task col-md-2">
-
-    {{#if editing}}
-      {{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable">
-    {{else}}
-      {{formatDate createdAt}}: <span class="editable"><strong>{{task}}</strong></span>
-    {{/if}}
-
-    {{#if editing2}}
-      <textarea name="notes" class="savable2">{{notes}}</textarea>
-     {{else}}
-     <p class="editable2">{{notes}}</p>
-     {{/if}}
-   </div>
-</template>
-
-<template name="projectdropdown">
-   <option class="dropdown" value="{{_id}}">{{name}}</option>
-</template>
-
-<template name="current">
-   {{#if editing3}}
-    <input type="text" name="project" value="{{name}}" class="savable3">
-   {{else}}
-   <h3 class="editable3">{{name}}</h3>
-   {{/if}}
-</template>

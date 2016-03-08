@@ -68,6 +68,12 @@ if (Meteor.isClient){
          return Session.set("target" + target.data._id, false);
        }
      },
+     "change .savable": function(event, target){
+       Tasks.update(this._id, {
+         $set: {task: event.currentTarget.value}
+       });
+       return Session.set("target" + target.data._id, false);
+     },
      "keypress .savable2": function(event, target){
        if(event.keyCode == 13){
          Tasks.update(this._id, {
@@ -75,6 +81,12 @@ if (Meteor.isClient){
          });
          return Session.set("target2" + target.data._id, false);
        }
+     },
+     "change .savable2": function(event, target){
+       Tasks.update(this._id, {
+         $set: {notes: event.currentTarget.value}
+       });
+       return Session.set("target2" + target.data._id, false);
      },
 
    });
@@ -104,7 +116,13 @@ if (Meteor.isClient){
         });
         return Session.set("target3" + target.data._id, false);
       }
-    }
+    },
+    "change .savable3": function(event, target){
+      Projects.update(this._id, {
+        $set: {name: event.currentTarget.value}
+      });
+      return Session.set("target3" + target.data._id, false);
+    },
   });
 
   Template.current.helpers({
