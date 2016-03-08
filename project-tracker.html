@@ -39,8 +39,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-    
+
 <div class="container">
+  <div class="col-md-4">
+
+
   {{#each currentProject}}
     {{>current}}
   {{/each}}
@@ -52,22 +55,39 @@
       <input type="submit" name="submit-task" value="Add Task">
     </form>
   </div>
+  {{else}}
+  <div class="task col-md-12 intro">
+    <strong>Welcome to Project Tracker!</strong><br>
+    <p>
+      This small app is my first foray into building with Meteor.
+      To get started, either select a project or create a new one.
+      You can create new task cards from the project page.
+      Task content and project titles can be edited by double-clicking the content.<br><br>
+
+      You can find me on GitHub <a href="https://github.com/kaylee42">@kaylee42</a>.
+    </p>
+  </div>
   {{/if}}
-  <ul>
+  </div>
+
 
     {{#each tasks}}
       {{> task}}
     {{/each}}
-  </ul>
+
   </div>
+
+
 
 </body>
 
 <template name="task">
+  <div class="task col-md-2">
+
     {{#if editing}}
-      <li>{{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable"></li>
+      {{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable">
     {{else}}
-      <li>{{formatDate createdAt}}: <span class="editable">{{task}}</span></li>
+      {{formatDate createdAt}}: <span class="editable">{{task}}</span>
     {{/if}}
 
     {{#if editing2}}
@@ -75,6 +95,7 @@
      {{else}}
      <p class="editable2">{{notes}}</p>
      {{/if}}
+   </div>
 </template>
 
 <template name="projectdropdown">
