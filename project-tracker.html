@@ -8,14 +8,33 @@
 
     <h1>Project Tracker</h1>
 
+    <div class="projects">
+      Select Project:
+      <select class="current-projects" name="">
+        <option></option>
+        {{#each projects}}
+          {{> projectdropdown}}
+        {{/each}}
+      </select>
+      <form id="new-project">
+        <input type="text" name="project" placeholder="New project">
+        <input type="submit" name="submit-project" value="Add Project">
+      </form>
+    </div>
+
   </header>
+  {{#each currentProject}}
+    {{>current}}
+  {{/each}}
+  {{#if currentProject}}
   <div class="task-form">
     <form class="new-task" id="new-task-form">
       <input type="text" name="task" placeholder="New task"><br>
       <textarea form="new-task-form" name="notes" rows="8" cols="40" placeholder="Notes"></textarea><br>
-      <input type="submit" name="submit" value="Add Task">
+      <input type="submit" name="submit-task" value="Add Task">
     </form>
   </div>
+  {{/if}}
   <ul>
 
     {{#each tasks}}
@@ -28,9 +47,9 @@
 
 <template name="task">
     {{#if editing}}
-    <li>{{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable"></li>
+      <li>{{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable"></li>
     {{else}}
-    <li>{{formatDate createdAt}}: <span class="editable">{{task}}</span></li>
+      <li>{{formatDate createdAt}}: <span class="editable">{{task}}</span></li>
     {{/if}}
 
     {{#if editing2}}
@@ -38,4 +57,16 @@
      {{else}}
      <p class="editable2">{{notes}}</p>
      {{/if}}
+</template>
+
+<template name="projectdropdown">
+   <option value="{{_id}}">{{name}}</option>
+</template>
+
+<template name="current">
+   {{#if editing3}}
+    <input type="text" name="project" value="{{name}}" class="savable3">
+   {{else}}
+   <h3 class="editable3">{{name}}</h3>
+   {{/if}}
 </template>
