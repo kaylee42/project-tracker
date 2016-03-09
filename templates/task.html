@@ -1,0 +1,16 @@
+<template name="task">
+  <div class="task col-md-2">
+
+    {{#if editing}}
+      {{formatDate createdAt}}:<input type="text" name="task" value="{{task}}" class="savable">
+    {{else}}
+      {{formatDate createdAt}}: <span class="editable"><strong>{{task}}</strong></span>
+    {{/if}}
+
+    {{#if editing2}}
+      <textarea name="notes" class="savable2">{{notes}}</textarea>
+     {{else}}
+     <p class="editable2">{{notes}}</p>
+     {{/if}}
+   </div>
+</template>
